@@ -409,7 +409,7 @@ public class VariantRecalibrator extends RodWalker<ExpandingArrayList<VariantDat
         dataManager.writeOutRecalibrationTable( recalWriter );
         if( RSCRIPT_FILE != null ) {
             logger.info( "Writing out visualization Rscript file...");
-            createVisualizationScript( dataManager.getRandomDataForPlotting( 1000, positiveTrainingData, negativeTrainingData, dataManager.getEvaluationData() ), goodModel, badModel, 0.0, dataManager.getAnnotationKeys().toArray(new String[USE_ANNOTATIONS.length]) );
+            createVisualizationScript( dataManager.getRandomDataForPlotting( 3000, positiveTrainingData, negativeTrainingData, dataManager.getEvaluationData() ), goodModel, badModel, 0.0, dataManager.getAnnotationKeys().toArray(new String[USE_ANNOTATIONS.length]) );
         }
 
         if(VRAC.MODE == VariantRecalibratorArgumentCollection.Mode.INDEL) {

@@ -238,7 +238,7 @@ public class VariantDataManager {
     public List<VariantDatum> getTrainingData() {
         final List<VariantDatum> trainingData = new ExpandingArrayList<>();
         for( final VariantDatum datum : data ) {
-            if( datum.atTrainingSite && !datum.failingSTDThreshold ) {
+            if( datum.atTrainingSite && !datum.failingSTDThreshold && !datum.atAntiTrainingSite ) {
                 trainingData.add( datum );
             }
         }
@@ -257,7 +257,7 @@ public class VariantDataManager {
         final List<VariantDatum> trainingData = new ExpandingArrayList<>();
 
         for( final VariantDatum datum : data ) {
-            if( datum != null && !datum.failingSTDThreshold && !Double.isInfinite(datum.lod) && datum.lod < VRAC.BAD_LOD_CUTOFF ) {
+            if( datum != null && !datum.failingSTDThreshold && !Double.isInfinite(datum.lod) && !datum.atTrainingSite && ( datum.lod < VRAC.BAD_LOD_CUTOFF  || datum.atAntiTrainingSite)) {
                 datum.atAntiTrainingSite = true;
                 trainingData.add( datum );
             }
